@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Assembly Constituency — SIR Round Data</title>
+  <meta name="description" content="Round-by-round vote count for a West Bengal assembly constituency, by Sabar Institute of Research.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;600;700&family=EB+Garamond:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- Splash -->
+<div id="splash">
+  <svg class="sp-logo" xmlns="http://www.w3.org/2000/svg" viewBox="270 455 540 187"></svg>
+  <div class="sp-line"></div>
+  <p class="sp-tag"><b>SIR </b>Round Data</p>
+  <p class="sp-sub">Round-wise Vote Count · West Bengal</p>
+  <div class="sp-bar"><div class="sp-bar-fill"></div></div>
+</div>
+
+<!-- Header -->
+<header>
+  <a class="logo-wrap" href="index.html">
+    <svg class="logo-svg" xmlns="http://www.w3.org/2000/svg" width="75" height="26"></svg>
+  </a>
+  <span class="header-tag">WB · S25 · ROUND DATA</span>
+</header>
+
+<!-- AC Hero -->
+<section class="ac-hero">
+  <a class="back-link" href="index.html">← All Constituencies</a>
+  <h1 id="acTitle">Loading…</h1>
+  <div class="ac-meta" id="acMeta"></div>
+</section>
+
+<!-- Stats bar -->
+<div class="stats-bar">
+  <div class="stat-item">
+    <div class="stat-label">Total Rounds</div>
+    <div class="stat-value" id="statRounds">—</div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-label">Total Votes</div>
+    <div class="stat-value" id="statVotes">—</div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-label">Candidates</div>
+    <div class="stat-value" id="statCands">—</div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-label">Leading Party</div>
+    <div class="stat-value" id="statWinner">—</div>
+  </div>
+</div>
+
+<!-- Round chart -->
+<section class="section">
+  <div class="section-head">
+    <div class="section-title">Candidate Votes by Round</div>
+    <div class="section-sub">Cumulative votes per candidate as counting rounds progressed</div>
+  </div>
+
+  <div id="loadingMsg" class="loading-msg">Loading data…</div>
+
+  <div id="chartWrap" style="display:none">
+    <div class="chart-wrap">
+      <div class="chart-body">
+        <div class="chart-inner">
+          <canvas id="acChart"></canvas>
+        </div>
+        <div class="legend" id="acLegend"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="controls">
+    <button class="btn primary" id="acPlayBtn">▶ Play</button>
+    <button class="btn" id="acResetBtn">↺ Reset</button>
+    <div class="round-badge" id="acRoundBadge">Round — / —</div>
+  </div>
+
+  <div class="stats-panel" id="acStatsPanel"></div>
+</section>
+
+<!-- Final results table -->
+<section class="section" style="border-bottom:none">
+  <div class="section-head">
+    <div class="section-title">Final Results</div>
+    <div class="section-sub">Vote totals after all rounds</div>
+  </div>
+  <div style="overflow-x:auto">
+    <table class="results-table">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Candidate</th>
+          <th>Party</th>
+          <th>Total Votes</th>
+        </tr>
+      </thead>
+      <tbody id="resultsBody"></tbody>
+    </table>
+  </div>
+</section>
+
+<footer>
+  Data: Election Commission of India &nbsp;·&nbsp;
+  Visualisation by <a href="https://sabar-institute.github.io/sir" target="_blank" rel="noopener">Sabar Institute of Research</a>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+<script src="js/utils.js"></script>
+<script src="js/ac.js"></script>
+</body>
+</html>

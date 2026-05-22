@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SIR — Round-wise Vote Count · West Bengal</title>
+  <meta name="description" content="Round-by-round animated vote count for West Bengal assembly elections, by Sabar Institute of Research.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;600;700&family=EB+Garamond:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- Splash -->
+<div id="splash">
+  <svg class="sp-logo" xmlns="http://www.w3.org/2000/svg" viewBox="270 455 540 187"></svg>
+  <div class="sp-line"></div>
+  <p class="sp-tag"><b>SIR </b>Round Data</p>
+  <p class="sp-sub">Round-wise Vote Count · West Bengal</p>
+  <div class="sp-bar"><div class="sp-bar-fill"></div></div>
+</div>
+
+<!-- Header -->
+<header>
+  <a class="logo-wrap" href="index.html">
+    <svg class="logo-svg" xmlns="http://www.w3.org/2000/svg" width="75" height="26"></svg>
+  </a>
+  <span class="header-tag">WB · S25 · ROUND DATA</span>
+</header>
+
+<!-- Hero -->
+<section class="hero">
+  <div class="hero-badge">West Bengal Assembly · S25</div>
+  <h1>Round-wise<br><em>Vote Count</em></h1>
+  <p>Animated visualisation of cumulative votes polled across all 294 assembly constituencies, tracked round by round as counting progressed.</p>
+</section>
+
+<!-- Cumulative chart -->
+<section class="section">
+  <div class="section-head">
+    <div class="section-title">Cumulative Votes by Round</div>
+    <div class="section-sub">All 294 constituencies combined · stacked by party · animated</div>
+  </div>
+
+  <div class="chart-wrap">
+    <div class="chart-body">
+      <div class="chart-inner">
+        <canvas id="mainChart"></canvas>
+      </div>
+      <div class="legend" id="legend"></div>
+    </div>
+  </div>
+
+  <div id="loadErr" style="display:none;color:#E53935;font-size:13px;margin-top:12px">
+    Could not load data. Make sure you're viewing this over HTTP (not file://).
+  </div>
+
+  <div class="controls">
+    <button class="btn primary" id="playBtn">▶ Play</button>
+    <button class="btn" id="resetBtn">↺ Reset</button>
+    <div class="round-badge" id="roundBadge">Round — / —</div>
+  </div>
+
+  <div class="stats-panel" id="statsPanel"></div>
+</section>
+
+<!-- AC grid -->
+<section class="section" style="border-bottom:none">
+  <div class="section-head">
+    <div class="section-title">Assembly Constituencies</div>
+    <div class="section-sub">Click any constituency to view its round-wise breakdown</div>
+  </div>
+
+  <div class="filter-row">
+    <div class="filter-group">
+      <button class="filter-btn active" data-sort="num">AC No.</button>
+      <button class="filter-btn" data-sort="margin-desc">Margin ↓</button>
+      <button class="filter-btn" data-sort="margin-asc">Margin ↑</button>
+    </div>
+    <button class="filter-btn" id="sweepFilter">Flipped Only</button>
+  </div>
+
+  <div class="search-row">
+    <input class="search-input" id="search" type="text" placeholder="Search constituency name…" autocomplete="off">
+    <div class="ac-count" id="acCount"></div>
+  </div>
+
+  <div class="ac-grid" id="acGrid"></div>
+</section>
+
+<footer>
+  Data: Election Commission of India &nbsp;·&nbsp;
+  Visualisation by <a href="https://sabar-institute.github.io/sir" target="_blank" rel="noopener">Sabar Institute of Research</a>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+<script src="js/utils.js"></script>
+<script src="js/home.js"></script>
+</body>
+</html>

@@ -1,0 +1,277 @@
+State_Code,AC_Number,AC_Name,Round,Candidate,Party,Votes_Brought_From_Previous_Rounds,Current_Round_Votes,Total_Votes
+S25,189,CHANDANNAGAR,1,Indranil Sen,All India Trinamool Congress,0,3792,3792
+S25,189,CHANDANNAGAR,1,Deepanjan Kumar Guha,Bharatiya Janata Party,0,4714,4714
+S25,189,CHANDANNAGAR,1,Monish Panda,Communist Party of India (Marxist),0,1392,1392
+S25,189,CHANDANNAGAR,1,Ratan Kumar Golder,Indian National Congress,0,58,58
+S25,189,CHANDANNAGAR,1,Ashish Chandra Gupta,Hindu Samaj Party,0,4,4
+S25,189,CHANDANNAGAR,1,Kumud Mondal,Socialist Unity Centre Of India (COMMUNIST),0,8,8
+S25,189,CHANDANNAGAR,1,Rohit Sarkar,Bharatiya National Janata Dal,0,7,7
+S25,189,CHANDANNAGAR,1,Sahariar Mullick,Aam Janata Unnayan party,0,8,8
+S25,189,CHANDANNAGAR,1,Praloy Mukherjee,Independent,0,13,13
+S25,189,CHANDANNAGAR,1,SANJOY MATABBAR,Independent,0,28,28
+S25,189,CHANDANNAGAR,1,Surajit Majumdar,Independent,0,26,26
+S25,189,CHANDANNAGAR,1,NOTA,None of the Above,0,123,123
+S25,189,CHANDANNAGAR,2,Indranil Sen,All India Trinamool Congress,3792,3664,7456
+S25,189,CHANDANNAGAR,2,Deepanjan Kumar Guha,Bharatiya Janata Party,4714,4492,9206
+S25,189,CHANDANNAGAR,2,Monish Panda,Communist Party of India (Marxist),1392,1394,2786
+S25,189,CHANDANNAGAR,2,Ratan Kumar Golder,Indian National Congress,58,66,124
+S25,189,CHANDANNAGAR,2,Ashish Chandra Gupta,Hindu Samaj Party,4,7,11
+S25,189,CHANDANNAGAR,2,Kumud Mondal,Socialist Unity Centre Of India (COMMUNIST),8,6,14
+S25,189,CHANDANNAGAR,2,Rohit Sarkar,Bharatiya National Janata Dal,7,12,19
+S25,189,CHANDANNAGAR,2,Sahariar Mullick,Aam Janata Unnayan party,8,7,15
+S25,189,CHANDANNAGAR,2,Praloy Mukherjee,Independent,13,15,28
+S25,189,CHANDANNAGAR,2,SANJOY MATABBAR,Independent,28,29,57
+S25,189,CHANDANNAGAR,2,Surajit Majumdar,Independent,26,20,46
+S25,189,CHANDANNAGAR,2,NOTA,None of the Above,123,100,223
+S25,189,CHANDANNAGAR,3,Indranil Sen,All India Trinamool Congress,7456,3754,11210
+S25,189,CHANDANNAGAR,3,Deepanjan Kumar Guha,Bharatiya Janata Party,9206,4726,13932
+S25,189,CHANDANNAGAR,3,Monish Panda,Communist Party of India (Marxist),2786,1767,4553
+S25,189,CHANDANNAGAR,3,Ratan Kumar Golder,Indian National Congress,124,85,209
+S25,189,CHANDANNAGAR,3,Ashish Chandra Gupta,Hindu Samaj Party,11,16,27
+S25,189,CHANDANNAGAR,3,Kumud Mondal,Socialist Unity Centre Of India (COMMUNIST),14,22,36
+S25,189,CHANDANNAGAR,3,Rohit Sarkar,Bharatiya National Janata Dal,19,8,27
+S25,189,CHANDANNAGAR,3,Sahariar Mullick,Aam Janata Unnayan party,15,11,26
+S25,189,CHANDANNAGAR,3,Praloy Mukherjee,Independent,28,8,36
+S25,189,CHANDANNAGAR,3,SANJOY MATABBAR,Independent,57,20,77
+S25,189,CHANDANNAGAR,3,Surajit Majumdar,Independent,46,20,66
+S25,189,CHANDANNAGAR,3,NOTA,None of the Above,223,94,317
+S25,189,CHANDANNAGAR,4,Indranil Sen,All India Trinamool Congress,11210,3014,14224
+S25,189,CHANDANNAGAR,4,Deepanjan Kumar Guha,Bharatiya Janata Party,13932,4452,18384
+S25,189,CHANDANNAGAR,4,Monish Panda,Communist Party of India (Marxist),4553,789,5342
+S25,189,CHANDANNAGAR,4,Ratan Kumar Golder,Indian National Congress,209,44,253
+S25,189,CHANDANNAGAR,4,Ashish Chandra Gupta,Hindu Samaj Party,27,7,34
+S25,189,CHANDANNAGAR,4,Kumud Mondal,Socialist Unity Centre Of India (COMMUNIST),36,7,43
+S25,189,CHANDANNAGAR,4,Rohit Sarkar,Bharatiya National Janata Dal,27,6,33
+S25,189,CHANDANNAGAR,4,Sahariar Mullick,Aam Janata Unnayan party,26,12,38
+S25,189,CHANDANNAGAR,4,Praloy Mukherjee,Independent,36,13,49
+S25,189,CHANDANNAGAR,4,SANJOY MATABBAR,Independent,77,41,118
+S25,189,CHANDANNAGAR,4,Surajit Majumdar,Independent,66,52,118
+S25,189,CHANDANNAGAR,4,NOTA,None of the Above,317,99,416
+S25,189,CHANDANNAGAR,5,Indranil Sen,All India Trinamool Congress,14224,4139,18363
+S25,189,CHANDANNAGAR,5,Deepanjan Kumar Guha,Bharatiya Janata Party,18384,4361,22745
+S25,189,CHANDANNAGAR,5,Monish Panda,Communist Party of India (Marxist),5342,1549,6891
+S25,189,CHANDANNAGAR,5,Ratan Kumar Golder,Indian National Congress,253,58,311
+S25,189,CHANDANNAGAR,5,Ashish Chandra Gupta,Hindu Samaj Party,34,7,41
+S25,189,CHANDANNAGAR,5,Kumud Mondal,Socialist Unity Centre Of India (COMMUNIST),43,13,56
+S25,189,CHANDANNAGAR,5,Rohit Sarkar,Bharatiya National Janata Dal,33,6,39
+S25,189,CHANDANNAGAR,5,Sahariar Mullick,Aam Janata Unnayan party,38,9,47
+S25,189,CHANDANNAGAR,5,Praloy Mukherjee,Independent,49,16,65
+S25,189,CHANDANNAGAR,5,SANJOY MATABBAR,Independent,118,18,136
+S25,189,CHANDANNAGAR,5,Surajit Majumdar,Independent,118,25,143
+S25,189,CHANDANNAGAR,5,NOTA,None of the Above,416,124,540
+S25,189,CHANDANNAGAR,6,Indranil Sen,All India Trinamool Congress,18363,3654,22017
+S25,189,CHANDANNAGAR,6,Deepanjan Kumar Guha,Bharatiya Janata Party,22745,5425,28170
+S25,189,CHANDANNAGAR,6,Monish Panda,Communist Party of India (Marxist),6891,1109,8000
+S25,189,CHANDANNAGAR,6,Ratan Kumar Golder,Indian National Congress,311,53,364
+S25,189,CHANDANNAGAR,6,Ashish Chandra Gupta,Hindu Samaj Party,41,10,51
+S25,189,CHANDANNAGAR,6,Kumud Mondal,Socialist Unity Centre Of India (COMMUNIST),56,10,66
+S25,189,CHANDANNAGAR,6,Rohit Sarkar,Bharatiya National Janata Dal,39,6,45
+S25,189,CHANDANNAGAR,6,Sahariar Mullick,Aam Janata Unnayan party,47,11,58
+S25,189,CHANDANNAGAR,6,Praloy Mukherjee,Independent,65,15,80
+S25,189,CHANDANNAGAR,6,SANJOY MATABBAR,Independent,136,26,162
+S25,189,CHANDANNAGAR,6,Surajit Majumdar,Independent,143,32,175
+S25,189,CHANDANNAGAR,6,NOTA,None of the Above,540,110,650
+S25,189,CHANDANNAGAR,7,Indranil Sen,All India Trinamool Congress,22017,3202,25219
+S25,189,CHANDANNAGAR,7,Deepanjan Kumar Guha,Bharatiya Janata Party,28170,3688,31858
+S25,189,CHANDANNAGAR,7,Monish Panda,Communist Party of India (Marxist),8000,1442,9442
+S25,189,CHANDANNAGAR,7,Ratan Kumar Golder,Indian National Congress,364,49,413
+S25,189,CHANDANNAGAR,7,Ashish Chandra Gupta,Hindu Samaj Party,51,10,61
+S25,189,CHANDANNAGAR,7,Kumud Mondal,Socialist Unity Centre Of India (COMMUNIST),66,11,77
+S25,189,CHANDANNAGAR,7,Rohit Sarkar,Bharatiya National Janata Dal,45,8,53
+S25,189,CHANDANNAGAR,7,Sahariar Mullick,Aam Janata Unnayan party,58,4,62
+S25,189,CHANDANNAGAR,7,Praloy Mukherjee,Independent,80,12,92
+S25,189,CHANDANNAGAR,7,SANJOY MATABBAR,Independent,162,8,170
+S25,189,CHANDANNAGAR,7,Surajit Majumdar,Independent,175,24,199
+S25,189,CHANDANNAGAR,7,NOTA,None of the Above,650,121,771
+S25,189,CHANDANNAGAR,8,Indranil Sen,All India Trinamool Congress,25219,4321,29540
+S25,189,CHANDANNAGAR,8,Deepanjan Kumar Guha,Bharatiya Janata Party,31858,3742,35600
+S25,189,CHANDANNAGAR,8,Monish Panda,Communist Party of India (Marxist),9442,1176,10618
+S25,189,CHANDANNAGAR,8,Ratan Kumar Golder,Indian National Congress,413,56,469
+S25,189,CHANDANNAGAR,8,Ashish Chandra Gupta,Hindu Samaj Party,61,10,71
+S25,189,CHANDANNAGAR,8,Kumud Mondal,Socialist Unity Centre Of India (COMMUNIST),77,9,86
+S25,189,CHANDANNAGAR,8,Rohit Sarkar,Bharatiya National Janata Dal,53,8,61
+S25,189,CHANDANNAGAR,8,Sahariar Mullick,Aam Janata Unnayan party,62,12,74
+S25,189,CHANDANNAGAR,8,Praloy Mukherjee,Independent,92,10,102
+S25,189,CHANDANNAGAR,8,SANJOY MATABBAR,Independent,170,31,201
+S25,189,CHANDANNAGAR,8,Surajit Majumdar,Independent,199,37,236
+S25,189,CHANDANNAGAR,8,NOTA,None of the Above,771,152,923
+S25,189,CHANDANNAGAR,9,Indranil Sen,All India Trinamool Congress,29540,3689,33229
+S25,189,CHANDANNAGAR,9,Deepanjan Kumar Guha,Bharatiya Janata Party,35600,3718,39318
+S25,189,CHANDANNAGAR,9,Monish Panda,Communist Party of India (Marxist),10618,1992,12610
+S25,189,CHANDANNAGAR,9,Ratan Kumar Golder,Indian National Congress,469,70,539
+S25,189,CHANDANNAGAR,9,Ashish Chandra Gupta,Hindu Samaj Party,71,8,79
+S25,189,CHANDANNAGAR,9,Kumud Mondal,Socialist Unity Centre Of India (COMMUNIST),86,13,99
+S25,189,CHANDANNAGAR,9,Rohit Sarkar,Bharatiya National Janata Dal,61,6,67
+S25,189,CHANDANNAGAR,9,Sahariar Mullick,Aam Janata Unnayan party,74,6,80
+S25,189,CHANDANNAGAR,9,Praloy Mukherjee,Independent,102,6,108
+S25,189,CHANDANNAGAR,9,SANJOY MATABBAR,Independent,201,12,213
+S25,189,CHANDANNAGAR,9,Surajit Majumdar,Independent,236,18,254
+S25,189,CHANDANNAGAR,9,NOTA,None of the Above,923,103,1026
+S25,189,CHANDANNAGAR,10,Indranil Sen,All India Trinamool Congress,33229,4298,37527
+S25,189,CHANDANNAGAR,10,Deepanjan Kumar Guha,Bharatiya Janata Party,39318,4687,44005
+S25,189,CHANDANNAGAR,10,Monish Panda,Communist Party of India (Marxist),12610,1669,14279
+S25,189,CHANDANNAGAR,10,Ratan Kumar Golder,Indian National Congress,539,68,607
+S25,189,CHANDANNAGAR,10,Ashish Chandra Gupta,Hindu Samaj Party,79,12,91
+S25,189,CHANDANNAGAR,10,Kumud Mondal,Socialist Unity Centre Of India (COMMUNIST),99,12,111
+S25,189,CHANDANNAGAR,10,Rohit Sarkar,Bharatiya National Janata Dal,67,4,71
+S25,189,CHANDANNAGAR,10,Sahariar Mullick,Aam Janata Unnayan party,80,7,87
+S25,189,CHANDANNAGAR,10,Praloy Mukherjee,Independent,108,14,122
+S25,189,CHANDANNAGAR,10,SANJOY MATABBAR,Independent,213,19,232
+S25,189,CHANDANNAGAR,10,Surajit Majumdar,Independent,254,33,287
+S25,189,CHANDANNAGAR,10,NOTA,None of the Above,1026,117,1143
+S25,189,CHANDANNAGAR,11,Indranil Sen,All India Trinamool Congress,37527,3677,41204
+S25,189,CHANDANNAGAR,11,Deepanjan Kumar Guha,Bharatiya Janata Party,44005,4027,48032
+S25,189,CHANDANNAGAR,11,Monish Panda,Communist Party of India (Marxist),14279,1555,15834
+S25,189,CHANDANNAGAR,11,Ratan Kumar Golder,Indian National Congress,607,65,672
+S25,189,CHANDANNAGAR,11,Ashish Chandra Gupta,Hindu Samaj Party,91,12,103
+S25,189,CHANDANNAGAR,11,Kumud Mondal,Socialist Unity Centre Of India (COMMUNIST),111,15,126
+S25,189,CHANDANNAGAR,11,Rohit Sarkar,Bharatiya National Janata Dal,71,8,79
+S25,189,CHANDANNAGAR,11,Sahariar Mullick,Aam Janata Unnayan party,87,7,94
+S25,189,CHANDANNAGAR,11,Praloy Mukherjee,Independent,122,13,135
+S25,189,CHANDANNAGAR,11,SANJOY MATABBAR,Independent,232,17,249
+S25,189,CHANDANNAGAR,11,Surajit Majumdar,Independent,287,31,318
+S25,189,CHANDANNAGAR,11,NOTA,None of the Above,1143,102,1245
+S25,189,CHANDANNAGAR,12,Indranil Sen,All India Trinamool Congress,41204,2306,43510
+S25,189,CHANDANNAGAR,12,Deepanjan Kumar Guha,Bharatiya Janata Party,48032,5122,53154
+S25,189,CHANDANNAGAR,12,Monish Panda,Communist Party of India (Marxist),15834,465,16299
+S25,189,CHANDANNAGAR,12,Ratan Kumar Golder,Indian National Congress,672,22,694
+S25,189,CHANDANNAGAR,12,Ashish Chandra Gupta,Hindu Samaj Party,103,3,106
+S25,189,CHANDANNAGAR,12,Kumud Mondal,Socialist Unity Centre Of India (COMMUNIST),126,12,138
+S25,189,CHANDANNAGAR,12,Rohit Sarkar,Bharatiya National Janata Dal,79,4,83
+S25,189,CHANDANNAGAR,12,Sahariar Mullick,Aam Janata Unnayan party,94,5,99
+S25,189,CHANDANNAGAR,12,Praloy Mukherjee,Independent,135,9,144
+S25,189,CHANDANNAGAR,12,SANJOY MATABBAR,Independent,249,16,265
+S25,189,CHANDANNAGAR,12,Surajit Majumdar,Independent,318,51,369
+S25,189,CHANDANNAGAR,12,NOTA,None of the Above,1245,73,1318
+S25,189,CHANDANNAGAR,13,Indranil Sen,All India Trinamool Congress,43510,4185,47695
+S25,189,CHANDANNAGAR,13,Deepanjan Kumar Guha,Bharatiya Janata Party,53154,4522,57676
+S25,189,CHANDANNAGAR,13,Monish Panda,Communist Party of India (Marxist),16299,709,17008
+S25,189,CHANDANNAGAR,13,Ratan Kumar Golder,Indian National Congress,694,53,747
+S25,189,CHANDANNAGAR,13,Ashish Chandra Gupta,Hindu Samaj Party,106,8,114
+S25,189,CHANDANNAGAR,13,Kumud Mondal,Socialist Unity Centre Of India (COMMUNIST),138,4,142
+S25,189,CHANDANNAGAR,13,Rohit Sarkar,Bharatiya National Janata Dal,83,10,93
+S25,189,CHANDANNAGAR,13,Sahariar Mullick,Aam Janata Unnayan party,99,10,109
+S25,189,CHANDANNAGAR,13,Praloy Mukherjee,Independent,144,13,157
+S25,189,CHANDANNAGAR,13,SANJOY MATABBAR,Independent,265,29,294
+S25,189,CHANDANNAGAR,13,Surajit Majumdar,Independent,369,49,418
+S25,189,CHANDANNAGAR,13,NOTA,None of the Above,1318,119,1437
+S25,189,CHANDANNAGAR,14,Indranil Sen,All India Trinamool Congress,47695,3629,51324
+S25,189,CHANDANNAGAR,14,Deepanjan Kumar Guha,Bharatiya Janata Party,57676,3924,61600
+S25,189,CHANDANNAGAR,14,Monish Panda,Communist Party of India (Marxist),17008,1021,18029
+S25,189,CHANDANNAGAR,14,Ratan Kumar Golder,Indian National Congress,747,39,786
+S25,189,CHANDANNAGAR,14,Ashish Chandra Gupta,Hindu Samaj Party,114,5,119
+S25,189,CHANDANNAGAR,14,Kumud Mondal,Socialist Unity Centre Of India (COMMUNIST),142,14,156
+S25,189,CHANDANNAGAR,14,Rohit Sarkar,Bharatiya National Janata Dal,93,6,99
+S25,189,CHANDANNAGAR,14,Sahariar Mullick,Aam Janata Unnayan party,109,6,115
+S25,189,CHANDANNAGAR,14,Praloy Mukherjee,Independent,157,12,169
+S25,189,CHANDANNAGAR,14,SANJOY MATABBAR,Independent,294,7,301
+S25,189,CHANDANNAGAR,14,Surajit Majumdar,Independent,418,27,445
+S25,189,CHANDANNAGAR,14,NOTA,None of the Above,1437,80,1517
+S25,189,CHANDANNAGAR,15,Indranil Sen,All India Trinamool Congress,51324,2598,53922
+S25,189,CHANDANNAGAR,15,Deepanjan Kumar Guha,Bharatiya Janata Party,61600,5788,67388
+S25,189,CHANDANNAGAR,15,Monish Panda,Communist Party of India (Marxist),18029,502,18531
+S25,189,CHANDANNAGAR,15,Ratan Kumar Golder,Indian National Congress,786,56,842
+S25,189,CHANDANNAGAR,15,Ashish Chandra Gupta,Hindu Samaj Party,119,2,121
+S25,189,CHANDANNAGAR,15,Kumud Mondal,Socialist Unity Centre Of India (COMMUNIST),156,6,162
+S25,189,CHANDANNAGAR,15,Rohit Sarkar,Bharatiya National Janata Dal,99,6,105
+S25,189,CHANDANNAGAR,15,Sahariar Mullick,Aam Janata Unnayan party,115,9,124
+S25,189,CHANDANNAGAR,15,Praloy Mukherjee,Independent,169,8,177
+S25,189,CHANDANNAGAR,15,SANJOY MATABBAR,Independent,301,21,322
+S25,189,CHANDANNAGAR,15,Surajit Majumdar,Independent,445,52,497
+S25,189,CHANDANNAGAR,15,NOTA,None of the Above,1517,64,1581
+S25,189,CHANDANNAGAR,16,Indranil Sen,All India Trinamool Congress,53922,4745,58667
+S25,189,CHANDANNAGAR,16,Deepanjan Kumar Guha,Bharatiya Janata Party,67388,2168,69556
+S25,189,CHANDANNAGAR,16,Monish Panda,Communist Party of India (Marxist),18531,215,18746
+S25,189,CHANDANNAGAR,16,Ratan Kumar Golder,Indian National Congress,842,38,880
+S25,189,CHANDANNAGAR,16,Ashish Chandra Gupta,Hindu Samaj Party,121,9,130
+S25,189,CHANDANNAGAR,16,Kumud Mondal,Socialist Unity Centre Of India (COMMUNIST),162,3,165
+S25,189,CHANDANNAGAR,16,Rohit Sarkar,Bharatiya National Janata Dal,105,4,109
+S25,189,CHANDANNAGAR,16,Sahariar Mullick,Aam Janata Unnayan party,124,2,126
+S25,189,CHANDANNAGAR,16,Praloy Mukherjee,Independent,177,4,181
+S25,189,CHANDANNAGAR,16,SANJOY MATABBAR,Independent,322,13,335
+S25,189,CHANDANNAGAR,16,Surajit Majumdar,Independent,497,17,514
+S25,189,CHANDANNAGAR,16,NOTA,None of the Above,1581,73,1654
+S25,189,CHANDANNAGAR,17,Indranil Sen,All India Trinamool Congress,58667,4598,63265
+S25,189,CHANDANNAGAR,17,Deepanjan Kumar Guha,Bharatiya Janata Party,69556,3756,73312
+S25,189,CHANDANNAGAR,17,Monish Panda,Communist Party of India (Marxist),18746,512,19258
+S25,189,CHANDANNAGAR,17,Ratan Kumar Golder,Indian National Congress,880,54,934
+S25,189,CHANDANNAGAR,17,Ashish Chandra Gupta,Hindu Samaj Party,130,5,135
+S25,189,CHANDANNAGAR,17,Kumud Mondal,Socialist Unity Centre Of India (COMMUNIST),165,2,167
+S25,189,CHANDANNAGAR,17,Rohit Sarkar,Bharatiya National Janata Dal,109,2,111
+S25,189,CHANDANNAGAR,17,Sahariar Mullick,Aam Janata Unnayan party,126,9,135
+S25,189,CHANDANNAGAR,17,Praloy Mukherjee,Independent,181,6,187
+S25,189,CHANDANNAGAR,17,SANJOY MATABBAR,Independent,335,11,346
+S25,189,CHANDANNAGAR,17,Surajit Majumdar,Independent,514,35,549
+S25,189,CHANDANNAGAR,17,NOTA,None of the Above,1654,82,1736
+S25,189,CHANDANNAGAR,18,Indranil Sen,All India Trinamool Congress,63265,4091,67356
+S25,189,CHANDANNAGAR,18,Deepanjan Kumar Guha,Bharatiya Janata Party,73312,4728,78040
+S25,189,CHANDANNAGAR,18,Monish Panda,Communist Party of India (Marxist),19258,1437,20695
+S25,189,CHANDANNAGAR,18,Ratan Kumar Golder,Indian National Congress,934,57,991
+S25,189,CHANDANNAGAR,18,Ashish Chandra Gupta,Hindu Samaj Party,135,8,143
+S25,189,CHANDANNAGAR,18,Kumud Mondal,Socialist Unity Centre Of India (COMMUNIST),167,12,179
+S25,189,CHANDANNAGAR,18,Rohit Sarkar,Bharatiya National Janata Dal,111,5,116
+S25,189,CHANDANNAGAR,18,Sahariar Mullick,Aam Janata Unnayan party,135,6,141
+S25,189,CHANDANNAGAR,18,Praloy Mukherjee,Independent,187,9,196
+S25,189,CHANDANNAGAR,18,SANJOY MATABBAR,Independent,346,26,372
+S25,189,CHANDANNAGAR,18,Surajit Majumdar,Independent,549,38,587
+S25,189,CHANDANNAGAR,18,NOTA,None of the Above,1736,95,1831
+S25,189,CHANDANNAGAR,19,Indranil Sen,All India Trinamool Congress,67356,4036,71392
+S25,189,CHANDANNAGAR,19,Deepanjan Kumar Guha,Bharatiya Janata Party,78040,5424,83464
+S25,189,CHANDANNAGAR,19,Monish Panda,Communist Party of India (Marxist),20695,1220,21915
+S25,189,CHANDANNAGAR,19,Ratan Kumar Golder,Indian National Congress,991,87,1078
+S25,189,CHANDANNAGAR,19,Ashish Chandra Gupta,Hindu Samaj Party,143,10,153
+S25,189,CHANDANNAGAR,19,Kumud Mondal,Socialist Unity Centre Of India (COMMUNIST),179,6,185
+S25,189,CHANDANNAGAR,19,Rohit Sarkar,Bharatiya National Janata Dal,116,8,124
+S25,189,CHANDANNAGAR,19,Sahariar Mullick,Aam Janata Unnayan party,141,8,149
+S25,189,CHANDANNAGAR,19,Praloy Mukherjee,Independent,196,10,206
+S25,189,CHANDANNAGAR,19,SANJOY MATABBAR,Independent,372,31,403
+S25,189,CHANDANNAGAR,19,Surajit Majumdar,Independent,587,59,646
+S25,189,CHANDANNAGAR,19,NOTA,None of the Above,1831,120,1951
+S25,189,CHANDANNAGAR,20,Indranil Sen,All India Trinamool Congress,71392,315,71707
+S25,189,CHANDANNAGAR,20,Deepanjan Kumar Guha,Bharatiya Janata Party,83464,579,84043
+S25,189,CHANDANNAGAR,20,Monish Panda,Communist Party of India (Marxist),21915,124,22039
+S25,189,CHANDANNAGAR,20,Ratan Kumar Golder,Indian National Congress,1078,6,1084
+S25,189,CHANDANNAGAR,20,Ashish Chandra Gupta,Hindu Samaj Party,153,1,154
+S25,189,CHANDANNAGAR,20,Kumud Mondal,Socialist Unity Centre Of India (COMMUNIST),185,2,187
+S25,189,CHANDANNAGAR,20,Rohit Sarkar,Bharatiya National Janata Dal,124,0,124
+S25,189,CHANDANNAGAR,20,Sahariar Mullick,Aam Janata Unnayan party,149,0,149
+S25,189,CHANDANNAGAR,20,Praloy Mukherjee,Independent,206,0,206
+S25,189,CHANDANNAGAR,20,SANJOY MATABBAR,Independent,403,2,405
+S25,189,CHANDANNAGAR,20,Surajit Majumdar,Independent,646,2,648
+S25,189,CHANDANNAGAR,20,NOTA,None of the Above,1951,16,1967
+S25,189,CHANDANNAGAR,21,Indranil Sen,All India Trinamool Congress,71707,121,71828
+S25,189,CHANDANNAGAR,21,Deepanjan Kumar Guha,Bharatiya Janata Party,84043,424,84467
+S25,189,CHANDANNAGAR,21,Monish Panda,Communist Party of India (Marxist),22039,165,22204
+S25,189,CHANDANNAGAR,21,Ratan Kumar Golder,Indian National Congress,1084,2,1086
+S25,189,CHANDANNAGAR,21,Ashish Chandra Gupta,Hindu Samaj Party,154,0,154
+S25,189,CHANDANNAGAR,21,Kumud Mondal,Socialist Unity Centre Of India (COMMUNIST),187,1,188
+S25,189,CHANDANNAGAR,21,Rohit Sarkar,Bharatiya National Janata Dal,124,0,124
+S25,189,CHANDANNAGAR,21,Sahariar Mullick,Aam Janata Unnayan party,149,1,150
+S25,189,CHANDANNAGAR,21,Praloy Mukherjee,Independent,206,2,208
+S25,189,CHANDANNAGAR,21,SANJOY MATABBAR,Independent,405,7,412
+S25,189,CHANDANNAGAR,21,Surajit Majumdar,Independent,648,8,656
+S25,189,CHANDANNAGAR,21,NOTA,None of the Above,1967,6,1973
+S25,189,CHANDANNAGAR,22,Indranil Sen,All India Trinamool Congress,71828,324,72152
+S25,189,CHANDANNAGAR,22,Deepanjan Kumar Guha,Bharatiya Janata Party,84467,390,84857
+S25,189,CHANDANNAGAR,22,Monish Panda,Communist Party of India (Marxist),22204,164,22368
+S25,189,CHANDANNAGAR,22,Ratan Kumar Golder,Indian National Congress,1086,2,1088
+S25,189,CHANDANNAGAR,22,Ashish Chandra Gupta,Hindu Samaj Party,154,2,156
+S25,189,CHANDANNAGAR,22,Kumud Mondal,Socialist Unity Centre Of India (COMMUNIST),188,0,188
+S25,189,CHANDANNAGAR,22,Rohit Sarkar,Bharatiya National Janata Dal,124,1,125
+S25,189,CHANDANNAGAR,22,Sahariar Mullick,Aam Janata Unnayan party,150,1,151
+S25,189,CHANDANNAGAR,22,Praloy Mukherjee,Independent,208,1,209
+S25,189,CHANDANNAGAR,22,SANJOY MATABBAR,Independent,412,1,413
+S25,189,CHANDANNAGAR,22,Surajit Majumdar,Independent,656,0,656
+S25,189,CHANDANNAGAR,22,NOTA,None of the Above,1973,3,1976
+S25,189,CHANDANNAGAR,23,Indranil Sen,All India Trinamool Congress,72152,141,72293
+S25,189,CHANDANNAGAR,23,Deepanjan Kumar Guha,Bharatiya Janata Party,84857,538,85395
+S25,189,CHANDANNAGAR,23,Monish Panda,Communist Party of India (Marxist),22368,19,22387
+S25,189,CHANDANNAGAR,23,Ratan Kumar Golder,Indian National Congress,1088,2,1090
+S25,189,CHANDANNAGAR,23,Ashish Chandra Gupta,Hindu Samaj Party,156,1,157
+S25,189,CHANDANNAGAR,23,Kumud Mondal,Socialist Unity Centre Of India (COMMUNIST),188,1,189
+S25,189,CHANDANNAGAR,23,Rohit Sarkar,Bharatiya National Janata Dal,125,0,125
+S25,189,CHANDANNAGAR,23,Sahariar Mullick,Aam Janata Unnayan party,151,2,153
+S25,189,CHANDANNAGAR,23,Praloy Mukherjee,Independent,209,0,209
+S25,189,CHANDANNAGAR,23,SANJOY MATABBAR,Independent,413,1,414
+S25,189,CHANDANNAGAR,23,Surajit Majumdar,Independent,656,7,663
+S25,189,CHANDANNAGAR,23,NOTA,None of the Above,1976,6,1982
