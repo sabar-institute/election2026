@@ -137,7 +137,7 @@ function buildChart() {
 
   const datasets = allParties.map(party => ({
     label:                getPartyAbbr(party),
-    data:                 [],
+    data:                 [0],
     borderColor:          getPartyColor(party),
     backgroundColor:      getPartyColor(party) + '18',
     borderWidth:          1,
@@ -153,7 +153,7 @@ function buildChart() {
 
   chartInst = new Chart(ctx, {
     type: 'line',
-    data: { labels: [], datasets },
+    data: { labels: ['R0'], datasets },
     options: {
       responsive: true,
       maintainAspectRatio: false,
@@ -264,8 +264,8 @@ function resetAnim() {
   pauseAnim();
   hideStatsPanel();
   curRound = 0;
-  chartInst.data.labels = [];
-  chartInst.data.datasets.forEach(d => (d.data = []));
+  chartInst.data.labels = ['R0'];
+  chartInst.data.datasets.forEach(d => (d.data = [0]));
   chartInst.update('none');
   document.getElementById('roundBadge').textContent = 'Round — / —';
   document.getElementById('playBtn').textContent = '▶ Play';
