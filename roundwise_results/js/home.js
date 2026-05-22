@@ -62,11 +62,11 @@ async function initHome() {
     processData(rows);
     buildChart();
     renderGrid();
-    hideSplash();
-    setTimeout(() => playAnim(), 400);
+    setTimeout(hideSplash, 20);
+    setTimeout(() => playAnim(), 420);
   } catch (e) {
     document.getElementById('loadErr').style.display = '';
-    hideSplash();
+    setTimeout(hideSplash, 20);
   }
 }
 
