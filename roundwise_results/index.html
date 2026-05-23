@@ -89,6 +89,14 @@
   <div class="ac-grid" id="acGrid"></div>
 </section>
 
+<div class="view-counter">
+  <span class="vc-icon">&#128065;</span>
+  <div class="vc-inner">
+    <span class="vc-label">Total Views</span>
+    <span class="vc-count" id="vcCount">—</span>
+  </div>
+</div>
+
 <footer>
   Data: Election Commission of India &nbsp;·&nbsp;
   Visualisation by <a href="https://sabar-institute.github.io/sir" target="_blank" rel="noopener">Sabar Institute of Research</a>
@@ -97,5 +105,11 @@
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
 <script src="js/utils.js"></script>
 <script src="js/home.js"></script>
+<script>
+  fetch('https://api.countapi.xyz/hit/sabar-institute/wb-election2026')
+    .then(r => r.json())
+    .then(d => { document.getElementById('vcCount').textContent = Number(d.value).toLocaleString(); })
+    .catch(() => {});
+</script>
 </body>
 </html>

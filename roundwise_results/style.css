@@ -497,6 +497,44 @@ header {
   color: var(--muted); font-family: var(--font-mono); font-size: 13px;
 }
 
+/* ── View Counter ── */
+.view-counter {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  max-width: 200px;
+  margin: 0 auto 32px;
+  padding: 14px 20px;
+  background: var(--s1);
+  border: 1px solid var(--bdr);
+  border-radius: 10px;
+}
+.vc-icon {
+  font-size: 22px;
+  line-height: 1;
+  opacity: .7;
+}
+.vc-inner {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.vc-label {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: .08em;
+}
+.vc-count {
+  font-family: var(--font-mono);
+  font-size: 20px;
+  color: var(--accent);
+  font-weight: 600;
+  letter-spacing: .02em;
+}
+
 /* ── Footer ── */
 footer {
   padding: 28px 40px;
