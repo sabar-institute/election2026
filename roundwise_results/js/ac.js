@@ -38,11 +38,10 @@ async function initAC() {
     const rows = parseCSV(text);
 
     processACData(rows);
-    buildACChart();
-    buildTable();
-
     document.getElementById('loadingMsg').style.display = 'none';
     document.getElementById('chartWrap').style.display = '';
+    buildACChart();
+    buildTable();
 
     hideSplash();
     setTimeout(() => playACanim(), 400);
