@@ -3,19 +3,20 @@
 const ANIM_MS  = 500;
 const PAUSE_MS = 1100;
 
-let chartInst   = null;
-let animTimer   = null;
-let curRound    = 0;
-let maxRound    = 0;
-let roundData   = {};
-let roundTotals = {};
-let allParties  = [];
-let allACs      = [];
-let acWinners   = {};  // { acNum: { name, party, margin } }
-let sweepSet    = new Set();
-let isPlaying   = false;
-let sortMode    = 'num';   // 'num' | 'margin-desc' | 'margin-asc'
-let filterSweep = false;
+let chartInst      = null;
+let animTimer      = null;
+let curRound       = 0;
+let maxRound       = 0;
+let roundData      = {};
+let roundTotals    = {};
+let allParties     = [];
+let allACs         = [];
+let acWinners      = {};  // { acNum: { name, party, margin } }
+let sweepSet       = new Set();
+let isPlaying      = false;
+let sortMode       = 'num';   // 'num' | 'margin-desc' | 'margin-asc'
+let filterSweep    = false;
+let postalPartyData = {};  // { party: total postal votes } cumulative all ACs
 
 /* ALL_roundwise_S25.csv has no header — parse positionally */
 function parseAllCSV(text) {
@@ -61,6 +62,7 @@ async function initHome() {
 
     processData(rows);
     buildChart();
+    buildPostalChart();
     renderGrid();
     setTimeout(hideSplash, 20);
     setTimeout(() => playAnim(), 420);
@@ -71,15 +73,15 @@ async function initHome() {
 }
 
 function processData(rows) {
-  const roundParty = {};
+  const roundParty  = {};
   const partyTotals = {};
-  const acMap = {};
-
-  /* Pass 1: chart aggregates + max round per AC */
+  const acMap       = {};
   const acMaxRoundNum = {};
 
+  /* Pass 1: EVM chart aggregates + max round per AC (skip postal rows) */
   rows.forEach(r => {
     const round = parseInt(r.Round);
+    if (isNaN(round)) return;
     const party = r.Party;
     const curr  = parseInt(r.Current_Round_Votes) || 0;
     const acNum = r.AC_Number;
@@ -94,10 +96,11 @@ function processData(rows) {
       acMaxRoundNum[acNum] = round;
   });
 
-  /* Pass 2: collect all candidates at last round per AC, then derive winner + margin */
-  const acLastCands = {};  // { acNum: [{ name, party, total }] }
+  /* Pass 2: winners from last EVM round */
+  const acLastCands = {};
   rows.forEach(r => {
     const round = parseInt(r.Round);
+    if (isNaN(round)) return;
     const acNum = r.AC_Number;
     if (round !== acMaxRoundNum[acNum]) return;
     const total = parseInt(r.Total_Votes) || 0;
@@ -105,6 +108,26 @@ function processData(rows) {
     acLastCands[acNum].push({ name: r.Candidate, party: r.Party, total });
   });
   Object.entries(acLastCands).forEach(([acNum, cands]) => {
+    cands.sort((a, b) => b.total - a.total);
+    const w = cands[0], r2 = cands[1];
+    acWinners[acNum] = { ...w, margin: r2 ? w.total - r2.total : w.total };
+  });
+
+  /* Pass 3: postal ballot — collect party votes + update winners to EVM+postal */
+  postalPartyData = {};
+  const acPostalCands = {};
+  rows.forEach(r => {
+    if (r.Round !== 'Postal Ballot') return;
+    const party     = r.Party;
+    const postalV   = parseInt(r.Current_Round_Votes) || 0;
+    const combTotal = parseInt(r.Total_Votes) || 0;
+    const acNum     = r.AC_Number;
+    postalPartyData[party] = (postalPartyData[party] || 0) + postalV;
+    if (!acPostalCands[acNum]) acPostalCands[acNum] = [];
+    acPostalCands[acNum].push({ name: r.Candidate, party, total: combTotal });
+  });
+  Object.entries(acPostalCands).forEach(([acNum, cands]) => {
+    if (!cands.length) return;
     cands.sort((a, b) => b.total - a.total);
     const w = cands[0], r2 = cands[1];
     acWinners[acNum] = { ...w, margin: r2 ? w.total - r2.total : w.total };
@@ -130,6 +153,54 @@ function processData(rows) {
   }
 
   allACs = Object.values(acMap).sort((a, b) => a.num - b.num);
+}
+
+function buildPostalChart() {
+  const NOTA_KEY = 'None of the Above';
+  const nota     = postalPartyData[NOTA_KEY] || 0;
+  const rest     = Object.entries(postalPartyData)
+    .filter(([p]) => p !== NOTA_KEY)
+    .sort(([, a], [, b]) => b - a);
+  const top6   = rest.slice(0, 6);
+  const others = rest.slice(6).reduce((s, [, v]) => s + v, 0);
+
+  const labels   = [...top6.map(([p]) => getPartyAbbr(p)), 'Others', 'NOTA'];
+  const values   = [...top6.map(([, v]) => v), others, nota];
+  const bgColors = [...top6.map(([p]) => getPartyColor(p) + 'bb'), '#66666688', '#44444488'];
+  const bdColors = [...top6.map(([p]) => getPartyColor(p)), '#666666', '#444444'];
+
+  const ctx = document.getElementById('postalChart').getContext('2d');
+  new Chart(ctx, {
+    type: 'bar',
+    data: {
+      labels,
+      datasets: [{ data: values, backgroundColor: bgColors, borderColor: bdColors, borderWidth: 1, borderRadius: 4 }]
+    },
+    options: {
+      indexAxis: 'y',
+      responsive: true,
+      maintainAspectRatio: false,
+      plugins: {
+        legend: { display: false },
+        tooltip: {
+          backgroundColor: '#1e1e1e', borderColor: '#2a2a2a', borderWidth: 1,
+          titleColor: '#888', bodyColor: '#e8e8e8',
+          callbacks: { label: ctx => ` ${fmtN(ctx.raw)} postal votes` }
+        }
+      },
+      scales: {
+        x: {
+          grid:  { color: '#2a2a2a' },
+          ticks: { color: '#888', font: { family: 'Courier New', size: 11 }, callback: v => fmtN(v) },
+          title: { display: true, text: 'Postal Votes', color: '#888', font: { family: 'Barlow', size: 12 } }
+        },
+        y: {
+          grid:  { color: 'transparent' },
+          ticks: { color: '#e8e8e8', font: { family: 'Courier New', size: 12 } }
+        }
+      }
+    }
+  });
 }
 
 function buildChart() {
@@ -184,7 +255,7 @@ function buildChart() {
           grid:  { color: '#2a2a2a' },
           ticks: { color: '#888', font: { family: 'Courier New', size: 11 },
                    callback: v => fmtN(v) },
-          title: { display: true, text: 'Cumulative Votes', color: '#888',
+          title: { display: true, text: 'Cumulative EVM Votes', color: '#888',
                    font: { family: 'Barlow', size: 12 } },
         },
       },

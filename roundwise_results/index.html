@@ -2,14 +2,14 @@
 <html lang="en">
 <head>
 
-  <meta property="og:title" content="Round-wise Voter Count : West Bengal 2026" />
-  <meta property="og:description" content="Assembly Election 2026: West Bengal round-wise voter count"/>
+  <meta property="og:title" content="Round-wise EVM Vote and Postal Ballot Count : West Bengal 2026" />
+  <meta property="og:description" content="Assembly Election 2026: West Bengal round-wise EVM vote and postal ballot count for all 294 assemblies in west bengal."/>
   <meta property="og:image" content="https://raw.githubusercontent.com/sabar-institute/sir/refs/heads/main/assets/logo2.png" />
   <meta property="og:url" content="https://sabar-institute.github.io/election2026/roundwise_results" />
   <meta property="og:type" content="website" />
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Round-wise Vote Count · West Bengal</title>
+  <title>Round-wise Vote and Postal Ballot Count · West Bengal</title>
   <meta name="description" content="Round-by-round animated vote count for West Bengal assembly elections, by Sabar Institute">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -23,7 +23,7 @@
   <svg class="sp-logo" xmlns="http://www.w3.org/2000/svg" viewBox="270 455 540 187"></svg>
   <div class="sp-line"></div>
   <p class="sp-tag"><b>2026 Election </b>Round-wise Data</p>
-  <p class="sp-sub">Round-wise Vote Count · West Bengal</p>
+  <p class="sp-sub">Round-wise EVM Votes and Postal Ballot Count · West Bengal</p>
   <div class="sp-bar"><div class="sp-bar-fill"></div></div>
 </div>
 
@@ -32,21 +32,22 @@
   <a class="logo-wrap" href="index.html">
     <svg class="logo-svg" xmlns="http://www.w3.org/2000/svg" width="75" height="26"></svg>
   </a>
-  <span class="header-tag">WB · S25 · ROUND DATA</span>
+  <a class="donate-btn" href="https://donate.sabarinstitute.org/" target="_blank" rel="noopener">Donate Us</a>
 </header>
 
 <!-- Hero -->
 <section class="hero">
-  <div class="hero-badge">West Bengal Assembly · S25</div>
-  <h1>Round-wise<br><em>Vote Count</em></h1>
-  <p>Animated visualisation of cumulative votes polled across all 294 assembly constituencies, tracked round by round as counting progressed.</p>
+  <div class="hero-badge">West Bengal Legislative Assembly Elections : 2026</div>
+  <h1>Round-wise<br><em>Election Result</em></h1>
+  <p>Animated visualisation of cumulative <strong>EVM votes</strong> polled across all 294 assembly constituencies, tracked round by round as counting progressed.</p>
+  <a class="btn-download" href="RoundWise/S25/ALL_roundwise_S25.csv" download="WB_S25_Roundwise_Data.csv">&#8595; Download Data (CSV)</a>
 </section>
 
 <!-- Cumulative chart -->
 <section class="section">
   <div class="section-head">
-    <div class="section-title">Cumulative Votes by Round</div>
-    <div class="section-sub">All 294 constituencies combined · stacked by party · animated</div>
+    <div class="section-title">Cumulative EVM Votes by Round</div>
+    <div class="section-sub">Cumulative EVM votes across each round polled across all 294 constituencies</div>
   </div>
 
   <div class="chart-wrap">
@@ -69,6 +70,19 @@
   </div>
 
   <div class="stats-panel" id="statsPanel"></div>
+</section>
+
+<!-- Postal ballot chart -->
+<section class="section">
+  <div class="section-head">
+    <div class="section-title">Postal Ballot Distribution</div>
+    <div class="section-sub">Top 6 parties + Others + NOTA · cumulative across all 294 constituencies</div>
+  </div>
+  <div class="chart-wrap">
+    <div class="chart-inner postal-chart-inner">
+      <canvas id="postalChart"></canvas>
+    </div>
+  </div>
 </section>
 
 <!-- AC grid -->
@@ -96,11 +110,8 @@
 </section>
 
 <div class="view-counter">
-  <span class="vc-icon">&#128065;</span>
-  <div class="vc-inner">
-    <span class="vc-label">Total Views</span>
-    <span class="vc-count" id="vcCount">—</span>
-  </div>
+  <span class="vc-count" id="vcCount">—</span>
+  <span class="vc-label">views</span>
 </div>
 
 <footer>

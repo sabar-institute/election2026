@@ -26,7 +26,7 @@
   <a class="logo-wrap" href="index.html">
     <svg class="logo-svg" xmlns="http://www.w3.org/2000/svg" width="75" height="26"></svg>
   </a>
-  <span class="header-tag">WB · ROUND-WISE DATA</span>
+  <a class="donate-btn" href="https://donate.sabarinstitute.org/" target="_blank" rel="noopener">Donate Us</a>
 </header>
 
 <!-- AC Hero -->
@@ -59,8 +59,8 @@
 <!-- Round chart -->
 <section class="section">
   <div class="section-head">
-    <div class="section-title">Candidate Votes by Round</div>
-    <div class="section-sub">Cumulative votes per candidate as counting rounds progressed</div>
+    <div class="section-title">Candidate EVM Votes by Round</div>
+    <div class="section-sub">Cumulative EVM votes per candidate as counting rounds progressed</div>
   </div>
 
   <div id="loadingMsg" class="loading-msg">Loading data…</div>
@@ -85,6 +85,19 @@
   <div class="stats-panel" id="acStatsPanel"></div>
 </section>
 
+<!-- Postal ballot chart -->
+<section class="section">
+  <div class="section-head">
+    <div class="section-title">Postal Ballot Distribution</div>
+    <div class="section-sub">Postal votes by party for this constituency</div>
+  </div>
+  <div class="chart-wrap">
+    <div class="chart-inner postal-chart-inner">
+      <canvas id="acPostalChart"></canvas>
+    </div>
+  </div>
+</section>
+
 <!-- Final results table -->
 <section class="section" style="border-bottom:none">
   <div class="section-head">
@@ -98,6 +111,8 @@
           <th>#</th>
           <th>Candidate</th>
           <th>Party</th>
+          <th>EVM Votes</th>
+          <th>Postal Votes</th>
           <th>Total Votes</th>
         </tr>
       </thead>

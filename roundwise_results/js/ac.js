@@ -12,6 +12,8 @@ let acRoundTotals = {};
 let acCandidates = [];
 let acChartCands = [];
 let acIsPlaying  = false;
+let acPostalData     = {};  // { party: postal votes } for this AC
+let acPostalCandData = {};  // { candidateName: postal votes } for this AC
 
 const MAX_LINES = 8;
 
@@ -41,6 +43,7 @@ async function initAC() {
     document.getElementById('loadingMsg').style.display = 'none';
     document.getElementById('chartWrap').style.display = '';
     buildACChart();
+    buildPostalBar();
     buildTable();
 
     hideSplash();
@@ -52,19 +55,31 @@ async function initAC() {
 }
 
 function processACData(rows) {
-  const candParty = {};
+  const candParty  = {};
   const finalVotes = {};
+  acPostalData     = {};
 
-  rows.forEach(r => {
+  const evmRows    = rows.filter(r => !isNaN(parseInt(r.Round)));
+  const postalRows = rows.filter(r =>  isNaN(parseInt(r.Round)));
+
+  /* Collect postal ballot data by party and candidate */
+  acPostalCandData = {};
+  postalRows.forEach(r => {
+    const v = parseInt(r.Current_Round_Votes) || 0;
+    acPostalData[r.Party]         = (acPostalData[r.Party]         || 0) + v;
+    acPostalCandData[r.Candidate] = (acPostalCandData[r.Candidate] || 0) + v;
+  });
+
+  evmRows.forEach(r => {
     if (!candParty[r.Candidate]) candParty[r.Candidate] = r.Party;
   });
 
-  const rounds = [...new Set(rows.map(r => parseInt(r.Round)))].sort((a, b) => a - b);
+  const rounds = [...new Set(evmRows.map(r => parseInt(r.Round)))].sort((a, b) => a - b);
   acMaxRound = rounds[rounds.length - 1];
 
   rounds.forEach(round => {
     acRoundData[round] = {};
-    rows.filter(r => parseInt(r.Round) === round).forEach(r => {
+    evmRows.filter(r => parseInt(r.Round) === round).forEach(r => {
       acRoundData[round][r.Candidate] = {
         party:   r.Party,
         current: parseInt(r.Current_Round_Votes) || 0,
@@ -87,7 +102,8 @@ function processACData(rows) {
       .reduce((s, v) => s + v.total, 0);
   });
 
-  const totalVotes = Object.values(finalVotes).reduce((s, v) => s + v, 0);
+  const postalTotal = Object.values(acPostalData).reduce((s, v) => s + v, 0);
+  const totalVotes  = Object.values(finalVotes).reduce((s, v) => s + v, 0) + postalTotal;
   const winner = acCandidates[0];
   document.getElementById('statRounds').textContent  = acMaxRound;
   document.getElementById('statVotes').textContent   = fmtN(totalVotes);
@@ -155,7 +171,7 @@ function buildACChart() {
           grid:  { color: '#2a2a2a' },
           ticks: { color: '#888', font: { family: 'Courier New', size: 11 },
                    callback: v => fmtN(v) },
-          title: { display: true, text: 'Cumulative Votes', color: '#888',
+          title: { display: true, text: 'Cumulative EVM Votes', color: '#888',
                    font: { family: 'Barlow', size: 12 } },
         },
       },
@@ -177,6 +193,54 @@ function buildACChart() {
                       ${getPartyAbbr(cand.party)}: ${shortName}
                     </span>`;
     leg.appendChild(el);
+  });
+}
+
+function buildPostalBar() {
+  const NOTA_KEY = 'None of the Above';
+  const nota     = acPostalData[NOTA_KEY] || 0;
+  const rest     = Object.entries(acPostalData)
+    .filter(([p]) => p !== NOTA_KEY)
+    .sort(([, a], [, b]) => b - a);
+  const top6   = rest.slice(0, 6);
+  const others = rest.slice(6).reduce((s, [, v]) => s + v, 0);
+
+  const labels   = [...top6.map(([p]) => getPartyAbbr(p)), ...(others > 0 ? ['Others'] : []), 'NOTA'];
+  const values   = [...top6.map(([, v]) => v), ...(others > 0 ? [others] : []), nota];
+  const bgColors = [...top6.map(([p]) => getPartyColor(p) + 'bb'), ...(others > 0 ? ['#66666688'] : []), '#44444488'];
+  const bdColors = [...top6.map(([p]) => getPartyColor(p)), ...(others > 0 ? ['#666666'] : []), '#444444'];
+
+  const ctx = document.getElementById('acPostalChart').getContext('2d');
+  new Chart(ctx, {
+    type: 'bar',
+    data: {
+      labels,
+      datasets: [{ data: values, backgroundColor: bgColors, borderColor: bdColors, borderWidth: 1, borderRadius: 4 }]
+    },
+    options: {
+      indexAxis: 'y',
+      responsive: true,
+      maintainAspectRatio: false,
+      plugins: {
+        legend: { display: false },
+        tooltip: {
+          backgroundColor: '#1e1e1e', borderColor: '#2a2a2a', borderWidth: 1,
+          titleColor: '#888', bodyColor: '#e8e8e8',
+          callbacks: { label: ctx => ` ${fmtN(ctx.raw)} postal votes` }
+        }
+      },
+      scales: {
+        x: {
+          grid:  { color: '#2a2a2a' },
+          ticks: { color: '#888', font: { family: 'Courier New', size: 11 }, callback: v => fmtN(v) },
+          title: { display: true, text: 'Postal Votes', color: '#888', font: { family: 'Barlow', size: 12 } }
+        },
+        y: {
+          grid:  { color: 'transparent' },
+          ticks: { color: '#e8e8e8', font: { family: 'Courier New', size: 12 } }
+        }
+      }
+    }
   });
 }
 
@@ -265,10 +329,20 @@ function buildTable() {
   const tbody = document.getElementById('resultsBody');
   const last  = acRoundData[acMaxRound];
 
-  acCandidates.forEach((cand, idx) => {
-    const d  = last[cand.name] || {};
+  const withTotals = [...acCandidates].map(cand => {
+    const evm    = last[cand.name]?.total || 0;
+    const postal = acPostalCandData[cand.name] || 0;
+    return { ...cand, evm, postal, total: evm + postal };
+  }).sort((a, b) => b.total - a.total);
+
+  const lead = withTotals.length >= 2 ? withTotals[0].total - withTotals[1].total : null;
+
+  withTotals.forEach((cand, idx) => {
     const tr = document.createElement('tr');
     if (idx === 0) tr.classList.add('winner');
+    const totalCell = idx === 0 && lead !== null
+      ? `${fmtN(cand.total)} <span style="color:var(--accent);font-size:11px">(+${fmtN(lead)})</span>`
+      : fmtN(cand.total);
     tr.innerHTML = `
       <td style="color:var(--muted);font-family:var(--font-mono)">${idx + 1}</td>
       <td style="font-weight:600">${titleCase(cand.name)}</td>
@@ -276,7 +350,9 @@ function buildTable() {
         <div class="party-dot" style="background:${getPartyColor(cand.party)}"></div>
         <span title="${cand.party}">${getPartyAbbr(cand.party)}</span>
       </div></td>
-      <td style="font-family:var(--font-mono)">${fmtN(d.total || 0)}</td>
+      <td style="font-family:var(--font-mono)">${fmtN(cand.evm)}</td>
+      <td style="font-family:var(--font-mono)">${fmtN(cand.postal)}</td>
+      <td style="font-family:var(--font-mono)">${totalCell}</td>
     `;
     tbody.appendChild(tr);
   });
