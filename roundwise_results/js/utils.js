@@ -131,3 +131,22 @@ function fmtN(n) {
 function titleCase(s) {
   return s.replace(/_+/g, ' ').trim().toLowerCase().replace(/\b\w/g, c => c.toUpperCase());
 }
+
+function buildSliderTicks(ticksEl, maxRound) {
+  ticksEl.innerHTML = '';
+  const step = maxRound <= 20 ? 5 : maxRound <= 40 ? 5 : 10;
+  for (let i = 0; i <= maxRound; i++) {
+    const major  = i % step === 0 || i === maxRound;
+    const t = document.createElement('div');
+    t.className = 'slider-tick';
+    t.innerHTML = `<div class="slider-tick-mark${major ? ' major' : ''}"></div>`
+      + `<div class="slider-tick-label">${major && i > 0 ? i : ''}</div>`;
+    ticksEl.appendChild(t);
+  }
+}
+
+function updateSliderFill(slider) {
+  const pct = slider.max > 0 ? (slider.value / slider.max) * 100 : 0;
+  slider.style.background =
+    `linear-gradient(to right, var(--accent) ${pct}%, var(--bdr) ${pct}%)`;
+}

@@ -64,6 +64,11 @@ async function initHome() {
     buildChart();
     buildPostalChart();
     renderGrid();
+    const slider = document.getElementById('roundSlider');
+    slider.max = maxRound;
+    slider.value = 0;
+    updateSliderFill(slider);
+    buildSliderTicks(document.getElementById('roundTicks'), maxRound);
     setTimeout(hideSplash, 20);
     setTimeout(() => playAnim(), 420);
   } catch (e) {
@@ -301,6 +306,29 @@ function addRound(r) {
   });
   chartInst.update();
   document.getElementById('roundBadge').textContent = `Round ${r} / ${maxRound}`;
+  const sl = document.getElementById('roundSlider');
+  sl.value = r;
+  updateSliderFill(sl);
+}
+
+function jumpToRound(r) {
+  pauseAnim();
+  chartInst.data.labels = ['R0'];
+  chartInst.data.datasets.forEach(d => (d.data = [0]));
+  for (let i = 1; i <= r; i++) {
+    const data = roundData[i];
+    if (!data) continue;
+    chartInst.data.labels.push(`R${i}`);
+    allParties.forEach((p, idx) => { chartInst.data.datasets[idx].data.push(data[p] || 0); });
+  }
+  curRound = r;
+  chartInst.update('none');
+  const sl = document.getElementById('roundSlider');
+  sl.value = r;
+  updateSliderFill(sl);
+  document.getElementById('roundBadge').textContent = r > 0 ? `Round ${r} / ${maxRound}` : 'Round — / —';
+  document.getElementById('playBtn').textContent = r >= maxRound ? '▶ Replay' : '▶ Play';
+  if (r > 0) showStatsPanel(r); else hideStatsPanel();
 }
 
 function playAnim() {
@@ -340,6 +368,9 @@ function resetAnim() {
   chartInst.update('none');
   document.getElementById('roundBadge').textContent = 'Round — / —';
   document.getElementById('playBtn').textContent = '▶ Play';
+  const sl = document.getElementById('roundSlider');
+  sl.value = 0;
+  updateSliderFill(sl);
 }
 
 function makeCard(ac) {
@@ -420,6 +451,11 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   document.getElementById('resetBtn').addEventListener('click', resetAnim);
+
+  document.getElementById('roundSlider').addEventListener('input', function () {
+    updateSliderFill(this);
+    jumpToRound(parseInt(this.value));
+  });
 
   document.getElementById('search').addEventListener('input', renderGrid);
 

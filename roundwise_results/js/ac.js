@@ -45,6 +45,12 @@ async function initAC() {
     buildACChart();
     buildPostalBar();
     buildTable();
+    const slider = document.getElementById('acRoundSlider');
+    slider.max = acMaxRound;
+    slider.value = 0;
+    updateSliderFill(slider);
+    buildSliderTicks(document.getElementById('acRoundTicks'), acMaxRound);
+    buildRoundButtons();
 
     hideSplash();
     setTimeout(() => playACanim(), 400);
@@ -284,6 +290,35 @@ function addACRound(r) {
 
   acChart.update();
   document.getElementById('acRoundBadge').textContent = `Round ${r} / ${acMaxRound}`;
+  const sl = document.getElementById('acRoundSlider');
+  sl.value = r;
+  updateSliderFill(sl);
+}
+
+function jumpToACRound(r) {
+  pauseACanim();
+  acChart.data.labels = [];
+  acChart.data.datasets.forEach(d => (d.data = []));
+  for (let i = 1; i <= r; i++) {
+    const data = acRoundData[i];
+    if (!data) continue;
+    acChart.data.labels.push(`R${i}`);
+    acChart.data.datasets.forEach(ds => {
+      if (ds._cand === '__others__') {
+        ds.data.push(acCandidates.slice(MAX_LINES).reduce((s, c) => s + (data[c.name]?.total || 0), 0));
+      } else {
+        ds.data.push(data[ds._cand]?.total || 0);
+      }
+    });
+  }
+  acCurRound = r;
+  acChart.update('none');
+  const sl = document.getElementById('acRoundSlider');
+  sl.value = r;
+  updateSliderFill(sl);
+  document.getElementById('acRoundBadge').textContent = r > 0 ? `Round ${r} / ${acMaxRound}` : 'Round — / —';
+  document.getElementById('acPlayBtn').textContent = r >= acMaxRound ? '▶ Replay' : '▶ Play';
+  if (r > 0) acShowStats(r); else acHideStats();
 }
 
 function playACanim() {
@@ -323,6 +358,9 @@ function resetACanim() {
   acChart.update('none');
   document.getElementById('acRoundBadge').textContent = 'Round — / —';
   document.getElementById('acPlayBtn').textContent = '▶ Play';
+  const sl = document.getElementById('acRoundSlider');
+  sl.value = 0;
+  updateSliderFill(sl);
 }
 
 function buildTable() {
@@ -358,6 +396,59 @@ function buildTable() {
   });
 }
 
+function buildRoundButtons() {
+  const row = document.getElementById('roundBtnRow');
+  row.innerHTML = '';
+  for (let r = 1; r <= acMaxRound; r++) {
+    const btn = document.createElement('button');
+    btn.className = 'filter-btn';
+    btn.textContent = `R${r}`;
+    btn.dataset.round = r;
+    btn.addEventListener('click', function () {
+      row.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+      this.classList.add('active');
+      showRoundBreak(parseInt(this.dataset.round));
+    });
+    row.appendChild(btn);
+  }
+}
+
+function showRoundBreak(r) {
+  const data = acRoundData[r];
+  if (!data) return;
+
+  document.getElementById('roundBreakTitle').textContent = `Round ${r} — Candidate Breakdown`;
+
+  const rows = Object.entries(data).map(([name, d]) => {
+    const prev   = d.total - d.current;
+    const postal = acPostalCandData[name] || 0;
+    return { name, party: d.party, prev, current: d.current, postal, total: d.total + postal };
+  }).sort((a, b) => b.total - a.total);
+
+  const tbody = document.getElementById('roundTableBody');
+  tbody.innerHTML = '';
+
+  rows.forEach((c, idx) => {
+    const tr = document.createElement('tr');
+    if (idx === 0) tr.classList.add('winner');
+    tr.innerHTML = `
+      <td style="color:var(--muted);font-family:var(--font-mono)">${idx + 1}</td>
+      <td style="font-weight:600">${titleCase(c.name)}</td>
+      <td><div class="party-badge">
+        <div class="party-dot" style="background:${getPartyColor(c.party)}"></div>
+        <span title="${c.party}">${getPartyAbbr(c.party)}</span>
+      </div></td>
+      <td style="font-family:var(--font-mono);color:var(--muted)">${fmtN(c.prev)}</td>
+      <td style="font-family:var(--font-mono);color:var(--accent);font-weight:600">${fmtN(c.current)}</td>
+      <td style="font-family:var(--font-mono)">${fmtN(c.postal)}</td>
+      <td style="font-family:var(--font-mono);font-weight:600">${fmtN(c.total)}</td>
+    `;
+    tbody.appendChild(tr);
+  });
+
+  document.getElementById('roundBreakTable').style.display = '';
+}
+
 function hideSplash() {
   const el = document.getElementById('splash');
   if (!el) return;
@@ -381,6 +472,11 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   document.getElementById('acResetBtn').addEventListener('click', resetACanim);
+
+  document.getElementById('acRoundSlider').addEventListener('input', function () {
+    updateSliderFill(this);
+    jumpToACRound(parseInt(this.value));
+  });
 
   initAC();
 });

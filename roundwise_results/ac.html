@@ -79,10 +79,39 @@
   <div class="controls">
     <button class="btn primary" id="acPlayBtn">▶ Play</button>
     <button class="btn" id="acResetBtn">↺ Reset</button>
+    <div class="slider-wrap">
+      <input type="range" class="round-slider" id="acRoundSlider" min="0" max="100" value="0">
+      <div class="slider-ticks" id="acRoundTicks"></div>
+    </div>
     <div class="round-badge" id="acRoundBadge">Round — / —</div>
   </div>
 
   <div class="stats-panel" id="acStatsPanel"></div>
+</section>
+
+<!-- Round-wise breakdown -->
+<section class="section">
+  <div class="section-head">
+    <div class="section-title" id="roundBreakTitle">Round-wise Breakdown</div>
+    <div class="section-sub">Click a round to see candidate-wise vote details</div>
+  </div>
+  <div class="round-btn-row" id="roundBtnRow"></div>
+  <div id="roundBreakTable" style="display:none;overflow-x:auto;margin-top:16px">
+    <table class="results-table">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Candidate</th>
+          <th>Party</th>
+          <th>Prev. Rounds</th>
+          <th>This Round</th>
+          <th>Postal Ballot</th>
+          <th>Total</th>
+        </tr>
+      </thead>
+      <tbody id="roundTableBody"></tbody>
+    </table>
+  </div>
 </section>
 
 <!-- Postal ballot chart -->
