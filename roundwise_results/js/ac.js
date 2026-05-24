@@ -51,6 +51,7 @@ async function initAC() {
     updateSliderFill(slider);
     buildSliderTicks(document.getElementById('acRoundTicks'), acMaxRound);
     buildRoundButtons();
+    document.querySelector('#roundBtnRow .filter-btn')?.click();
 
     hideSplash();
     setTimeout(() => playACanim(), 400);
