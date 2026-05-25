@@ -13,9 +13,12 @@ let acCandidates = [];
 let acChartCands = [];
 let acIsPlaying  = false;
 let acPostalData     = {};  // { party: postal votes } for this AC
-let acPostalCandData = {};  // { candidateName: postal votes } for this AC
+let acPostalCandData = {};  // { candKey: postal votes } for this AC
 
 const MAX_LINES = 8;
+
+/* Unique key to handle duplicate candidate names across different parties */
+function candKey(name, party) { return name + '|||' + party; }
 
 async function initAC() {
   const params   = new URLSearchParams(window.location.search);
@@ -62,23 +65,24 @@ async function initAC() {
 }
 
 function processACData(rows) {
-  const candParty  = {};
+  const candMap    = {};  // key -> { name, party }
   const finalVotes = {};
   acPostalData     = {};
 
   const evmRows    = rows.filter(r => !isNaN(parseInt(r.Round)));
   const postalRows = rows.filter(r =>  isNaN(parseInt(r.Round)));
 
-  /* Collect postal ballot data by party and candidate */
   acPostalCandData = {};
   postalRows.forEach(r => {
-    const v = parseInt(r.Current_Round_Votes) || 0;
-    acPostalData[r.Party]         = (acPostalData[r.Party]         || 0) + v;
-    acPostalCandData[r.Candidate] = (acPostalCandData[r.Candidate] || 0) + v;
+    const v   = parseInt(r.Current_Round_Votes) || 0;
+    const key = candKey(r.Candidate, r.Party);
+    acPostalData[r.Party] = (acPostalData[r.Party] || 0) + v;
+    acPostalCandData[key] = (acPostalCandData[key] || 0) + v;
   });
 
   evmRows.forEach(r => {
-    if (!candParty[r.Candidate]) candParty[r.Candidate] = r.Party;
+    const key = candKey(r.Candidate, r.Party);
+    if (!candMap[key]) candMap[key] = { name: r.Candidate, party: r.Party };
   });
 
   const rounds = [...new Set(evmRows.map(r => parseInt(r.Round)))].sort((a, b) => a - b);
@@ -87,8 +91,10 @@ function processACData(rows) {
   rounds.forEach(round => {
     acRoundData[round] = {};
     evmRows.filter(r => parseInt(r.Round) === round).forEach(r => {
-      acRoundData[round][r.Candidate] = {
+      const key = candKey(r.Candidate, r.Party);
+      acRoundData[round][key] = {
         party:   r.Party,
+        name:    r.Candidate,
         current: parseInt(r.Current_Round_Votes) || 0,
         total:   parseInt(r.Total_Votes) || 0,
       };
@@ -96,12 +102,12 @@ function processACData(rows) {
   });
 
   const last = acRoundData[acMaxRound];
-  Object.keys(candParty).forEach(name => {
-    finalVotes[name] = last[name]?.total || 0;
+  Object.keys(candMap).forEach(key => {
+    finalVotes[key] = last[key]?.total || 0;
   });
 
-  const sorted = Object.keys(candParty).sort((a, b) => finalVotes[b] - finalVotes[a]);
-  acCandidates = sorted.map(name => ({ name, party: candParty[name] }));
+  const sorted = Object.keys(candMap).sort((a, b) => finalVotes[b] - finalVotes[a]);
+  acCandidates = sorted.map(key => ({ key, name: candMap[key].name, party: candMap[key].party }));
 
   /* Precompute round totals */
   rounds.forEach(r => {
@@ -123,14 +129,14 @@ function buildACChart() {
 
   const top      = acCandidates.slice(0, MAX_LINES);
   const hasOthers = acCandidates.length > MAX_LINES;
-  acChartCands   = hasOthers ? [...top, { name: '__others__', party: 'Others' }] : top;
+  acChartCands   = hasOthers ? [...top, { key: '__others__', name: '__others__', party: 'Others' }] : top;
 
   const datasets = acChartCands.map(cand => ({
-    label:            cand.name === '__others__' ? 'Others' : getPartyAbbr(cand.party),
+    label:            cand.key === '__others__' ? 'Others' : getPartyAbbr(cand.party),
     data:             [],
     borderColor:      getPartyColor(cand.party),
     backgroundColor:  getPartyColor(cand.party) + '18',
-    borderWidth:      cand.name === '__others__' ? 1 : 1,
+    borderWidth:      cand.key === '__others__' ? 1 : 1,
     tension:          0.4,
     fill:             false,
     pointRadius:          3,
@@ -138,9 +144,9 @@ function buildACChart() {
     pointBackgroundColor: 'transparent',
     pointBorderColor:     getPartyColor(cand.party),
     pointBorderWidth:     1,
-    _cand:            cand.name,
+    _cand:            cand.key,
     _party:           cand.party,
-    _fullName:        cand.name === '__others__'
+    _fullName:        cand.key === '__others__'
                         ? 'Others'
                         : `${cand.name} (${getPartyAbbr(cand.party)})`,
   }));
@@ -188,7 +194,7 @@ function buildACChart() {
   /* Legend */
   const leg = document.getElementById('acLegend');
   acChartCands.forEach(cand => {
-    const shortName = cand.name === '__others__'
+    const shortName = cand.key === '__others__'
       ? 'Others'
       : cand.name.split(' ').slice(0, 2)
           .map(w => w.charAt(0).toUpperCase() + w.slice(1).toLowerCase()).join(' ');
@@ -196,7 +202,7 @@ function buildACChart() {
     const el = document.createElement('div');
     el.className = 'legend-item';
     el.innerHTML = `<div class="legend-dot" style="background:${getPartyColor(cand.party)}"></div>
-                    <span title="${cand.name === '__others__' ? 'Others' : cand.name}">
+                    <span title="${cand.key === '__others__' ? 'Others' : cand.name}">
                       ${getPartyAbbr(cand.party)}: ${shortName}
                     </span>`;
     leg.appendChild(el);
@@ -255,12 +261,12 @@ function acShowStats(r) {
   const panel = document.getElementById('acStatsPanel');
   const total = acRoundTotals[r] || 1;
   panel.innerHTML = acChartCands.map(cand => {
-    const d   = acRoundData[r]?.[cand.name];
-    const v   = cand.name === '__others__'
-      ? acCandidates.slice(MAX_LINES).reduce((s, c) => s + (acRoundData[r]?.[c.name]?.total || 0), 0)
+    const d   = acRoundData[r]?.[cand.key];
+    const v   = cand.key === '__others__'
+      ? acCandidates.slice(MAX_LINES).reduce((s, c) => s + (acRoundData[r]?.[c.key]?.total || 0), 0)
       : (d?.total || 0);
     const pct = ((v / total) * 100).toFixed(1);
-    const lbl = cand.name === '__others__' ? 'Others' : getPartyAbbr(cand.party);
+    const lbl = cand.key === '__others__' ? 'Others' : getPartyAbbr(cand.party);
     return `<div class="stats-item">
       <div class="stats-dot" style="background:${getPartyColor(cand.party)}"></div>
       <span class="stats-abbr">${lbl}</span>
@@ -282,7 +288,7 @@ function addACRound(r) {
   acChart.data.datasets.forEach(ds => {
     if (ds._cand === '__others__') {
       const val = acCandidates.slice(MAX_LINES)
-        .reduce((s, c) => s + (data[c.name]?.total || 0), 0);
+        .reduce((s, c) => s + (data[c.key]?.total || 0), 0);
       ds.data.push(val);
     } else {
       ds.data.push(data[ds._cand]?.total || 0);
@@ -306,7 +312,7 @@ function jumpToACRound(r) {
     acChart.data.labels.push(`R${i}`);
     acChart.data.datasets.forEach(ds => {
       if (ds._cand === '__others__') {
-        ds.data.push(acCandidates.slice(MAX_LINES).reduce((s, c) => s + (data[c.name]?.total || 0), 0));
+        ds.data.push(acCandidates.slice(MAX_LINES).reduce((s, c) => s + (data[c.key]?.total || 0), 0));
       } else {
         ds.data.push(data[ds._cand]?.total || 0);
       }
@@ -369,8 +375,8 @@ function buildTable() {
   const last  = acRoundData[acMaxRound];
 
   const withTotals = [...acCandidates].map(cand => {
-    const evm    = last[cand.name]?.total || 0;
-    const postal = acPostalCandData[cand.name] || 0;
+    const evm    = last[cand.key]?.total || 0;
+    const postal = acPostalCandData[cand.key] || 0;
     return { ...cand, evm, postal, total: evm + postal };
   }).sort((a, b) => b.total - a.total);
 
@@ -420,10 +426,10 @@ function showRoundBreak(r) {
 
   document.getElementById('roundBreakTitle').textContent = `Round ${r} — Candidate Breakdown`;
 
-  const rows = Object.entries(data).map(([name, d]) => {
+  const rows = Object.entries(data).map(([key, d]) => {
     const prev   = d.total - d.current;
-    const postal = acPostalCandData[name] || 0;
-    return { name, party: d.party, prev, current: d.current, postal, total: d.total + postal };
+    const postal = acPostalCandData[key] || 0;
+    return { name: d.name, party: d.party, prev, current: d.current, postal, total: d.total + postal };
   }).sort((a, b) => b.total - a.total);
 
   const tbody = document.getElementById('roundTableBody');
